@@ -1,0 +1,59 @@
+{open:}
+<section class="popup show">
+	<style>
+		.popup {
+			position: fixed;
+			top: 0;
+			overflow-y: auto;
+			z-index:  1000;
+			min-width:  100%;
+			height:  100vh;
+			background-color: rgba(0,0,0,0.3);
+			display: grid;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			transition: opacity 0.5s;
+			pointer-events: none;
+		}
+		.popup.show {
+			pointer-events: auto;
+			opacity: 1;
+		}
+		.popup .close {
+			right: 4px;
+			top:  4px;
+			line-height:  60%;
+			opacity:  0.6;
+			cursor: pointer;
+			font-size:  36px;
+			position: absolute;
+		}
+		.popup .body {
+			position: relative;
+			color: var(--white);
+			min-width:  300px;
+			margin:  60px;
+			padding: 30px;
+			background-color: rgba(0,0,0,0.6);
+		}
+		@media(max-width:  500px) {
+			.popup .body {
+				margin:  0px;
+			}
+		}
+	</style>
+	<div class="body">
+		<div class="close">&times;</div>
+{close:}
+	</div>
+	&nbsp;
+</section>
+<script type="module">
+	const div = document.getElementById('{div}').getElementsByClassName('popup')[0]
+	const cls = (cls, el = div) => el.getElementsByClassName(cls)
+	const tag = (tag, el = div) => el.getElementsByTagName(tag)
+	cls('close')[0].addEventListener('click', () => {
+		div.classList.remove('show')
+	})
+</script>
