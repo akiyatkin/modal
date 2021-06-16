@@ -18,6 +18,10 @@
 	pointer-events: auto;
 	opacity: 1;
 }
+.float-label label {
+	margin-bottom: 3px;
+	display: block;
+}
 .popupmodal .close {
 	right: 4px;
 	top:  4px;
