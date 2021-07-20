@@ -2,15 +2,15 @@
 <style>
 	/*Надо чтобы не моргал вставленный html в начале. Окно видимым на мгновение показывается в ff*/
 	.popupmodal {
-		opacity: 0;
+		visibility: hidden;
 	}
 </style>
-<section class="popupmodal">
+<section class="popupmodal" role="dialog">
 	<div class="body">
-		<!-- <div class="closemodal close">&times;</div> -->
+	<button aria-label="Закрыть" class="closemodal close">&times;</button>
 {end:}
 	</div>
-	<div>&nbsp;<!-- 2/3 экрана --></div>
+	<div style="user-select: none">&nbsp;<!-- 2/3 экрана --></div>
 </section>
 <script type="module">
 	import { Modal } from "/vendor/akiyatkin/modal/Modal.js"
@@ -30,4 +30,8 @@
 		if (path.find(el => el == body)) return; //Клик внутри меню, меню не сворачивает
 		Modal.hide(div)
 	}, true);
+	document.body.addEventListener('keydown', e => {
+	    if (e.keyCode !== 27) return
+	    Modal.hide(div)
+	});
 </script>

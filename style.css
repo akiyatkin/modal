@@ -1,5 +1,6 @@
 .popupmodal {
 	position: fixed;
+	visibility: hidden;
 	top: 0;
 	left: 0;
 	overflow-y: auto;
@@ -16,6 +17,7 @@
 	pointer-events: none;
 }
 .popupmodal.show {
+	visibility: visible;
 	pointer-events: auto;
 	opacity: 1;
 }
@@ -31,7 +33,9 @@
 	cursor: pointer;
 	font-size:  36px;
 	position: absolute;
-	transition: 0.3s;
+	transition: opacity 0.3s;
+	background-color: transparent;
+	border: none;
 }
 .popupmodal .closemodal:hover {
 	opacity:  1;
