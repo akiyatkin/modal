@@ -25,7 +25,6 @@ const Modal = {
 		const modal = cls('popupmodal', div)[0]
 		modal.classList.add('show')
 		const close = cls('close', modal)[0]
-		console.log(close)
 		close.focus()
 		const state = Modal.getState(div)
 		state.is = true
