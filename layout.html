@@ -9,7 +9,7 @@
 <div id="popupmodal{id}">
 	<section class="popupmodal" role="dialog" tabindex="-1">
 		<div class="body">
-		<button aria-label="Закрыть" class="closemodal close">&times;</button>
+		<div role="button" tabindex="0" aria-label="Закрыть" class="closemodal close">&times;</div>
 {end:}
 	</div>
 	<div style="user-select: none">&nbsp;<!-- 2/3 экрана --></div>
@@ -21,11 +21,18 @@
 	const modal = cls('popupmodal')[0]
 	const body = cls('body', modal)[0]
 	const close = cls('close')[0]
-	if (close) close.addEventListener('click', async () => {
-		if (!modal.classList.contains('show')) return
-		const { Modal } = await import("/vendor/akiyatkin/modal/Modal.js")
-		Modal.hide(div)
-	})
+	if (close) {
+		close.addEventListener('click', async () => {
+			if (!modal.classList.contains('show')) return
+			import("/vendor/akiyatkin/modal/Modal.js").then(({ Modal }) => Modal.hide(div))
+		})
+		close.addEventListener('keypress', e => { //32 space, 13 enter
+			if (e.keyCode != 13) return
+			if (!modal.classList.contains('show')) return
+			e.preventDefault()
+			import("/vendor/akiyatkin/modal/Modal.js").then(({ Modal }) => Modal.hide(div))
+		})
+	}
 	document.body.addEventListener('mousedown', async e => {
 		if (!modal.classList.contains('show')) return
 		const { Modal } = await import("/vendor/akiyatkin/modal/Modal.js")
