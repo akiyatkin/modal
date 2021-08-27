@@ -27,7 +27,7 @@
 }
 .popupmodal .closemodal {
 	right: 4px;
-	top:  -6px;
+	top:  calc(-0.5rem - 4px);
 	opacity:  0.6;
 	cursor: pointer;
 	font-size:  36px;
