@@ -21,14 +21,7 @@
 	const modal = cls('popupmodal')[0]
 	const body = cls('body', modal)[0]
 	const close = cls('close')[0]
-<<<<<<< HEAD
-	if (close) close.addEventListener('click', async () => {
-		if (!modal.classList.contains('show')) return
-		const { Modal } = await import("/vendor/akiyatkin/modal/Modal.js")
-		Modal.hide(div)
-	})
-	document.body.addEventListener('click', async e => {
-=======
+
 	if (close) {
 		close.addEventListener('click', async () => {
 			if (!modal.classList.contains('show')) return
@@ -41,8 +34,7 @@
 			import("/vendor/akiyatkin/modal/Modal.js").then(({ Modal }) => Modal.hide(div))
 		})
 	}
-	document.body.addEventListener('mousedown', async e => {
->>>>>>> 6b64fefe97b049c4e9765b714bc683c934648783
+	document.body.addEventListener('click', async e => {
 		if (!modal.classList.contains('show')) return
 		const { Modal } = await import("/vendor/akiyatkin/modal/Modal.js")
 		let el = e.target
