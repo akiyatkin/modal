@@ -43,7 +43,7 @@
 .popupmodal > .body {
 	position: relative;
 	/*color: white;*/
-	min-width:  300px;
+	min-width: 330px;
 	margin:  60px;
 	padding: 30px;
 	/*background-color: rgba(0,0,0,0.6);*/
@@ -51,6 +51,6 @@
 }
 @media(max-width:  500px) {
 	.popupmodal > .body {
-		margin:  0px;
+		margin:  15px;
 	}
 }
