@@ -42,7 +42,7 @@
 		while (el && el.parentElement) path.push(el = el.parentElement)
 		if (path.find(el => el.tagName == 'A')) return Modal.hide(div); //Клик по ссылке закрываем
 		if (path.find(el => el == body)) return; //Клик внутри меню, меню не сворачивает
-		Modal.hide(div)
+		//Modal.hide(div)
 	}, true);
 	modal.addEventListener('keydown', async e => {
 		if (e.keyCode !== 13) return
