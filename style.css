@@ -1,6 +1,6 @@
 .popupmodal {
 	position: fixed;
-	visibility: hidden;
+	/*visibility: hidden;*/
 	top: 0;
 	left: 0;
 	overflow-y: auto;
@@ -17,7 +17,7 @@
 	pointer-events: none;
 }
 .popupmodal.show {
-	visibility: visible;
+	/*visibility: visible;*/
 	pointer-events: auto;
 	opacity: 1;
 }
