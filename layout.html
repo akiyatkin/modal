@@ -1,60 +1,21 @@
 {start:}
-<style>
-	/*Надо чтобы не моргал вставленный html в начале. Окно видимым на мгновение показывается в ff*/
-	.popupmodal {
-		visibility: hidden;
-		position: fixed;
-	}
-</style>
-<div id="popupmodal{id}">
+<div>
+	<style>
+		/*Надо чтобы не моргал вставленный html в начале. Окно видимым на мгновение показывается в ff*/
+		.popupmodal {
+			visibility: hidden;
+			position: fixed;
+		}
+	</style>
 	<section class="popupmodal" role="dialog" tabindex="-1">
 		<div class="body">
-		<div role="button" tabindex="0" aria-label="Закрыть" class="closemodal close">&times;</div>
+			<div role="button" tabindex="0" aria-label="Закрыть" class="closemodal close">&times;</div>
 {end:}
-	</div>
-	<div style="user-select: none; font-size:0">&nbsp;<!-- 2/3 экрана --></div>
+		</div>
+		<div style="user-select: none; font-size:0">&nbsp;<!-- 2/3 экрана --></div>
 	</section>
+	<script type="module">
+		import { Modal } from "/vendor/akiyatkin/modal/Modal.js"
+		Modal.init()
+	</script>
 </div>
-<script type="module">	
-	const div = document.getElementById('popupmodal{id}')
-	const cls = (cls, el = div) => el.getElementsByClassName(cls)
-	const modal = cls('popupmodal')[0]
-	const body = cls('body', modal)[0]
-	const close = cls('close')[0]
-
-	if (close) {
-		close.addEventListener('click', async () => {
-			if (!modal.classList.contains('show')) return
-			import("/vendor/akiyatkin/modal/Modal.js").then(({ Modal }) => Modal.hide(div))
-		})
-		close.addEventListener('keypress', e => { //32 space, 13 enter
-			if (e.keyCode != 13) return
-			if (!modal.classList.contains('show')) return
-			e.preventDefault()
-			import("/vendor/akiyatkin/modal/Modal.js").then(({ Modal }) => Modal.hide(div))
-		})
-	}
-	document.body.addEventListener('click', async e => {
-		if (!modal.classList.contains('show')) return
-		const { Modal } = await import("/vendor/akiyatkin/modal/Modal.js")
-		let el = e.target
-		const path = [el]
-		while (el && el.parentElement) path.push(el = el.parentElement)
-		if (path.find(el => el.tagName == 'A')) return Modal.hide(div); //Клик по ссылке закрываем
-		if (path.find(el => el == body)) return; //Клик внутри меню, меню не сворачивает
-		//Modal.hide(div)
-	}, true);
-	modal.addEventListener('keydown', async e => {
-		if (e.keyCode !== 13) return
-		if (e.target != modal) return
-		if (!modal.classList.contains('show')) return
-	    const { Modal } = await import("/vendor/akiyatkin/modal/Modal.js")
-	    Modal.hide(div)
-	});
-	document.body.addEventListener('keydown', async e => {
-		if (e.keyCode !== 27) return
-	    if (!modal.classList.contains('show')) return
-	    const { Modal } = await import("/vendor/akiyatkin/modal/Modal.js")
-	    Modal.hide(div)
-	});
-</script>
