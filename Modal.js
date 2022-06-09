@@ -67,7 +67,8 @@ const Modal = {
 				while (el && el.parentElement) path.push(el = el.parentElement)
 				if (path.find(el => el.tagName == 'A')) return Modal.hide(modal); //Клик по ссылке закрываем
 				if (path.find(el => el == body)) return; //Клик внутри меню, меню не сворачивает
-				//Modal.hide(div)
+				if (e.target.closest('.modal')) return; //Клик по второму всплывающему окну
+				Modal.hide(modal)
 			}, true);
 			modal.addEventListener('keydown', async e => {
 				if (e.keyCode !== 13) return
